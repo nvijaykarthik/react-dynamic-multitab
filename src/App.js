@@ -1,25 +1,59 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import "react-tabs/style/react-tabs.css";
 import './App.css';
 
 class App extends Component {
+  state = {
+    tabs: [{
+      name: "workspace"
+    }]
+  }
+
+  newTab() {
+    let tab = {
+      name: "workspace"
+    }
+    this.setState(
+      {
+        tabs: [...this.state.tabs, tab]
+      }
+    )
+  }
+
   render() {
+    const tabs = [];
+    const tabPane = [];
+    this.state.tabs.forEach((tab,index) => {
+      tabs.push(
+        <Tab key={index}>
+          {tab.name}-{index}
+        </Tab>
+      )
+
+      tabPane.push(
+        <TabPanel key={index}>
+          <div>
+            <textarea rows="30" className="textarea">{tab.desc}</textarea>
+          </div>
+          <div>
+            <button>button1</button>
+            <button>button2</button>
+            <button>button3</button>
+          </div>
+        </TabPanel>
+      )
+    }
+    )
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <h1>Asrita</h1>
+        <button onClick={(e) => this.newTab(e)}>New Tab</button>
+        <Tabs>
+          <TabList>{tabs}</TabList>
+          {tabPane}
+        </Tabs>
       </div>
     );
   }

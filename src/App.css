@@ -1,5 +1,7 @@
 .App {
-  text-align: center;
+  text-align: left;
+  padding:5px;
+  margin:5px;
 }
 
 .App-logo {
@@ -30,4 +32,12 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.TabPane{
+  border:solid 1px skyblue;
+}
+.textarea{
+  width:95%;
+  height:70%;
 }
